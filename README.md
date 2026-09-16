@@ -48,6 +48,6 @@ Toolchain pinned in `lean-toolchain`: `leanprover/lean4:v4.34.0`
 
 ## Identity
 
-Formalization: Shiqiang Chen (GitHub: shunfeng8421). Published <2026-09-17>.
-First-public-visibility timestamp for the formalized counterexample is the
-publication date of this repository.
+Formalization: Shiqiang Chen (GitHub: shunfeng8421). **Published 2026-09-17
+(UTC 2026-09-16 19:09)**. First-public-visibility timestamp for this
+formalized counterexample is the creation date of this repository.
