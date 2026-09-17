@@ -1,53 +1,35 @@
-# JSP-301 — Consecutive powerful numbers need not be squares
+# Justin Sun Prize Lean formalizations — JSP-301 & JSP-307
 
-Lean 4 (mathlib) formal proof / disproof of the problem **JSP-000301** from
-The Justin Sun Prize problem bank:
+Lean 4 (mathlib) formal proofs of two problems from The Justin Sun Prize problem bank, by **Shiqiang Chen (GitHub: shunfeng8421)**.
 
-> **If two consecutive positive integers are powerful, must at least one be a
-> perfect square?**
+## JSP-301 — Consecutive powerful numbers need not be squares
 
-**Answer: No.** A counterexample is the consecutive pair
+**Problem:** If two consecutive positive integers are powerful, must at least one be a perfect square?
 
-```
-12167 = 23³            (powerful, not a square)
-12168 = 2³ · 3² · 13²  (powerful, not a square)
-```
+**Answer: No.** `12167 = 23³` and `12168 = 2³·3²·13²` are consecutive powerful numbers, and neither is a square (both lie strictly between 110² and 111²).
+The machine-checked proof is in **`Jsp301.lean`**, central theorem `Jsp301.JSP_301`.
 
-Both numbers are powerful (every prime divisor appears to exponent ≥ 2), and
-neither is a perfect square, since both lie strictly between the consecutive
-squares 110² = 12100 and 111² = 12321.
+## JSP-307 — Consecutive integers with strictly decreasing largest prime factors
 
-This repository contains the formal statement and a machine-checked Lean proof
-of these facts.
-The central theorem is `Jsp301.JSP_301`.
+**Problem:** Can three consecutive integers have strictly decreasing largest prime factors?
 
-## Highlights
+**Answer: Yes.** `13, 14, 15` have largest prime factors `13 > 7 > 5`:
+- `13 = 13` — LPF 13
+- `14 = 2·7` — LPF 7
+- `15 = 3·5` — LPF 5
 
-* `def Jsp301.IsPowerful n` — every prime `p | n` also satisfies `p² | n`.
-* `def Jsp301.IsSquare n` — `n = m²` for some `m`.
-* `theorem Jsp301.JSP_301 : ∃ n m, m = n + 1 ∧ IsPowerful n ∧ IsPowerful m ∧ ¬ IsSquare n ∧ ¬ IsSquare m`
+The machine-checked proof is in **`Jsp307.lean`**, central theorem `Jsp307.JSP_307 : ∃ n, IsLPF n 13 ∧ IsLPF (n+1) 7 ∧ IsLPF (n+2) 5`.
+Mathematical existence due to Erdős–Pomerance [ErPo78] and Balog [Ba01]; this is a formalization-only contribution.
 
-## Build
+## Reproduce
 
 ```sh
 git clone <repo-url>
 cd jsp301
-lake exe cache get     # fetch prebuilt mathlib
-lake build Jsp301
+lake build Jsp301     # or: lake env lean Jsp301.lean
+lake env lean Jsp307.lean
 ```
-
-Toolchain pinned in `lean-toolchain`: `leanprover/lean4:v4.34.0`
-(matches `require mathlib` at `rev = "v4.34.0"`).
-
-## Source
-
-* Erdős/Golomb problem statement as catalogued in the Justin Sun Prize problem
-  bank (JSP-000301). The counterexample appears in M. V. Subbarao, and related
-  families in the "powerful numbers" literature.
-* Full factorizations verified directly by `norm_num`/`rfl` inside Lean.
+Toolchain pinned `leanprover/lean4:v4.34.0`, mathlib v4.34.0. No `sorry`/`axiom`/`admit`.
 
 ## Identity
-
-Formalization: Shiqiang Chen (GitHub: shunfeng8421). **Published 2026-09-17
-(UTC 2026-09-16 19:09)**. First-public-visibility timestamp for this
-formalized counterexample is the creation date of this repository.
+Formalization: Shiqiang Chen. First-public-visibility timestamps: JSP-301 — 2026-09-16 19:09 UTC (initial repo creation); JSP-307 — added to this public repository 2026-09-17.
