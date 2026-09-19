@@ -27,11 +27,11 @@ def DivCount (n : ℕ) : ℕ :=
 
 /-- 2 has two divisors in [1,2]: 1 and 2. -/
 theorem divCount_2 : DivCount 2 = 2 := by
-  native_decide
+  decide
 
 /-- 3 has two divisors in [1,3]: 1 and 3. -/
 theorem divCount_3 : DivCount 3 = 2 := by
-  native_decide
+  decide
 
 /-- Consecutive integers 2 and 3 have equal divisor counts: d(2) = d(3) = 2. -/
 theorem JSP_787_existence :

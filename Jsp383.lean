@@ -98,7 +98,7 @@ theorem chain_is_legal_run :
   constructor
   · norm_num [chain]
   constructor
-  · native_decide
+  · decide
   · exact chain_all_prime
 
 end Jsp383

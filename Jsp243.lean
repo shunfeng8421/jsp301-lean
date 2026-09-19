@@ -30,7 +30,7 @@ theorem one_rep_in_interval : (1 : ℚ) = 1 / 2 + 1 / 3 + 1 / 6 := by
 
 /-- The three denominators are distinct. -/
 theorem denominators_distinct : List.Nodup [2, 3, 6] := by
-  native_decide
+  decide
 
 /-- Every denominator lies in the interval `[2,6]`. -/
 theorem denominators_in_interval : ∀ d ∈ ([2, 3, 6] : List ℕ), 2 ≤ d ∧ d ≤ 6 := by

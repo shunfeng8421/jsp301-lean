@@ -49,19 +49,19 @@ def countSumFree (n : ℕ) : ℕ :=
 
 /-- `{1,3}` is sum-free. -/
 example : IsSumFree ({1, 3} : Finset ℕ) := by
-  native_decide
+  decide
 
 /-- `{1,2}` is NOT sum-free (`1+1=2`). -/
 example : ¬ IsSumFree ({1, 2} : Finset ℕ) := by
-  native_decide
+  decide
 
 /-- Exact counts, matching the known sequence 2,3,6,9,16,24,42,61,... -/
-theorem count_1 : countSumFree 1 = 2 := by native_decide
-theorem count_2 : countSumFree 2 = 3 := by native_decide
-theorem count_3 : countSumFree 3 = 6 := by native_decide
-theorem count_4 : countSumFree 4 = 9 := by native_decide
-theorem count_5 : countSumFree 5 = 16 := by native_decide
-theorem count_6 : countSumFree 6 = 24 := by native_decide
-theorem count_7 : countSumFree 7 = 42 := by native_decide
+theorem count_1 : countSumFree 1 = 2 := by decide
+theorem count_2 : countSumFree 2 = 3 := by decide
+theorem count_3 : countSumFree 3 = 6 := by decide
+theorem count_4 : countSumFree 4 = 9 := by decide
+theorem count_5 : countSumFree 5 = 16 := by decide
+theorem count_6 : countSumFree 6 = 24 := by decide
+theorem count_7 : countSumFree 7 = 42 := by decide
 
 end Jsp616

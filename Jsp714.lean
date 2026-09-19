@@ -28,7 +28,7 @@ def S : List ℕ := [1, 2, 4, 8]
 /-- The ten pairwise sums (with repetition) are all distinct. -/
 theorem ten_sums_distinct :
     List.Nodup [1+1, 1+2, 1+4, 1+8, 2+2, 2+4, 2+8, 4+4, 4+8, 8+8] := by
-  native_decide
+  decide
 
 /-- `{1,2,4,8}` is a Sidon set: for any `a,b,c,d` in it, `a+b = c+d` implies the
 unordered pairs coincide.  We verify the finite Sidon property by decision.
@@ -37,6 +37,6 @@ theorem sidon_1248 :
     ∀ a ∈ S, ∀ b ∈ S, ∀ c ∈ S, ∀ d ∈ S,
       a + b = c + d → (a = c ∧ b = d) ∨ (a = d ∧ b = c) := by
   -- S has four concrete elements; decide the finite proposition
-  native_decide
+  decide
 
 end Jsp714
