@@ -32,6 +32,36 @@ theorem u_rec {n : ℕ} (hn : 1 ≤ n) : u (n + 1) = step (u n) := by
   | zero => omega
   | succ k => simp [u]
 
+/-- step 1 = sqrt(2·1·2) = sqrt 4 = 2. -/
+theorem step1 : step 1 = 2 := by
+  unfold step
+  have hs : Nat.sqrt (2 * 2) = 2 := Nat.sqrt_eq 2
+  have h : 2 * 1 * (1 + 1) = 2 * 2 := by norm_num
+  rw [h]
+  exact hs
+
+/-- step 2 = sqrt(2·2·3) = 3 (since 9 ≤ 12 < 16). -/
+theorem step2 : step 2 = 3 := by
+  unfold step
+  apply le_antisymm
+  · have hlt4 : Nat.sqrt (2 * 2 * (2 + 1)) < 4 := Nat.sqrt_lt'.2 (by norm_num)
+    omega
+  · apply Nat.le_sqrt.2
+    norm_num
+
+/-- u 3 = 3: computed step-by-step (u1=1, u2=step 1=2, u3=step 2=3). No native_decide. -/
+theorem u3 : u 3 = 3 := by
+  have hs1 : step 1 = 2 := step1
+  have hs2 : step 2 = 3 := step2
+  have hu1 : u 1 = 1 := by simp [u]
+  have hu2 : u 2 = 2 := by
+    calc u 2 = step (u 1) := by exact u_rec (show 1 ≤ 1 by omega)
+         _ = step 1 := by rw [hu1]
+         _ = 2 := hs1
+  calc u 3 = step (u 2) := by exact u_rec (show 1 ≤ 2 by omega)
+       _ = step 2 := by rw [hu2]
+       _ = 3 := hs2
+
 -- ── P2 supporting lemmas (Nat arithmetic) ─────────────────────────
 
 /-- 2u(u+1) < (2u-1)^2 for u ≥ 3. -/
@@ -196,12 +226,11 @@ theorem u_odd_ge_three (n : ℕ) (hn : 2 ≤ n) : 3 ≤ u (2 * n - 1) := by
             have hplus : (b - 1) + 1 = b := by omega
             simpa [hplus] using hs
           exact le_trans hua (le_of_lt hstep)
-  have h3 : u 3 = 3 := by native_decide
+  have h3 : u 3 = 3 := u3
   have hge : 3 ≤ u 3 := by simpa [h3]
   have hu3 : u 3 ≤ u (2 * n - 1) := hmono 3 (2 * n - 1) (by omega) hk
   exact le_trans hge hu3
 
-/-- P3 main theorem: d_n ∈ {0,1} for n ≥ 2. -/
 theorem d_mem_zero_one (n : ℕ) (hn : 2 ≤ n) :
     d n = 0 ∨ d n = 1 := by
   have hn1 : 1 ≤ n := by omega
