@@ -1,7 +1,7 @@
 name = "jsp301"
 version = "0.1.0"
 keywords = ["math"]
-defaultTargets = ["Jsp301"]
+defaultTargets = ["Jsp301", "Jsp307", "Jsp318", "Jsp193Full", "Jsp243", "Jsp125", "Ramsey125", "Rl1", "Rl2", "Rl3", "RL4", "JspMain"]
 
 [leanOptions]
 pp.unicode.fun = true # pretty-prints `fun a ↦ b`
@@ -16,3 +16,36 @@ rev = "v4.34.0"
 
 [[lean_lib]]
 name = "Jsp301"
+
+[[lean_lib]]
+name = "Jsp307"
+
+[[lean_lib]]
+name = "Jsp318"
+
+[[lean_lib]]
+name = "Jsp193Full"
+
+[[lean_lib]]
+name = "Jsp243"
+
+[[lean_lib]]
+name = "Jsp125"
+
+[[lean_lib]]
+name = "Ramsey125"
+
+[[lean_lib]]
+name = "Rl1"
+
+[[lean_lib]]
+name = "Rl2"
+
+[[lean_lib]]
+name = "Rl3"
+
+[[lean_lib]]
+name = "RL4"
+
+[[lean_lib]]
+name = "JspMain"
