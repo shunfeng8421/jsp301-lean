@@ -2,6 +2,19 @@
 
 Lean 4 (mathlib) formal proofs of two problems from The Justin Sun Prize problem bank, by **Shiqiang Chen (GitHub: shunfeng8421)**.
 
+## JSP-492 — Superlinear number of pairs at a fixed distance on a sphere
+
+**Problem (catalog JSP-000492, Erdős #605; Swanepoel–Valtr Thm 1):** Can the number of pairs at one distance in a finite spherical point set grow superlinearly?
+
+**Answer: Yes.** Swanepoel–Valtr (2004) and Erdős–Hickerson–Pach (1989): on the unit sphere the number of unit-distance pairs can be at least c·n·√(log n) for a constant c > 0.
+
+The machine-checked Lean 4 (mathlib) proof is in **Jsp492.lean**:
+- Jsp492.swanepoel_valtr — Theorem 1 of Swanepoel–Valtr in D=√2 critical-diameter form: ∃ c > 0 (c = 1/(72√3)), ∀ n ≥ 2, ∃ B ⊆ sphere 0 (1/√2), |B| = n ∧ c·n·√(log n) ≤ unorderedUnitPairs B.
+- Jsp492.jsp492_official — official catalog corollary: ∃ f : ℕ → ℝ with  → ∞, ∀ n ≥ 2, ∃ B ⊆ sphere 0 1, |B| = n ∧ n·f(n) ≤ unorderedUnitPairsAtSqrt2 B.
+
+Build: Lean 4.34.0 (lean-toolchain), mathlib 4.34.0 (lakefile.toml); lake exe cache get, then lean Jsp492.lean. Axioms: [propext, Classical.choice, Quot.sound].
+
+
 ## JSP-301 — Consecutive powerful numbers need not be squares
 
 **Problem:** If two consecutive positive integers are powerful, must at least one be a perfect square?
