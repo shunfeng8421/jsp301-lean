@@ -27,19 +27,19 @@ variable {V : Type u}
 /-- A **proper list-coloring** of `G` w.r.t. list assignment `lists`:
 each vertex `v` receives a color `c v` inside `lists v`, and adjacent
 vertices receive distinct colors. -/
-def ProperListColoring (G : SimpleGraph V) {α : Type v} [DecidableEq α]
+def ProperListColoring (G : SimpleGraph V) {α : Type} [DecidableEq α]
     (lists : V → Finset α) (c : V → α) : Prop :=
   (∀ v, c v ∈ lists v) ∧ ∀ ⦃u v⦄, G.Adj u v → c u ≠ c v
 
 /-- `G` admits a proper list-coloring from the given lists. -/
-def HasProperListColoring (G : SimpleGraph V) {α : Type v} [DecidableEq α]
+def HasProperListColoring (G : SimpleGraph V) {α : Type} [DecidableEq α]
     (lists : V → Finset α) : Prop :=
   ∃ c : V → α, ProperListColoring G lists c
 
 /-- `G` is **`k`-choosable**: for every color type and every list-assignment
 of size `k`, a proper list-coloring exists. -/
 def Choosable (G : SimpleGraph V) (k : ℕ) : Prop :=
-  ∀ {α : Type v} [DecidableEq α] (lists : V → Finset α),
+  ∀ {α : Type} [DecidableEq α] (lists : V → Finset α),
     (∀ v, (lists v).card = k) → HasProperListColoring G lists
 
 end Jsp511
