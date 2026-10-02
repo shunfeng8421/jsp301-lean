@@ -1,7 +1,7 @@
 name = "jsp301"
 version = "0.1.0"
 keywords = ["math"]
-defaultTargets = ["Jsp301", "Jsp307", "Jsp318", "Jsp193Full", "Jsp243", "Jsp125", "Ramsey125", "Rl1", "Rl2", "Rl3", "RL4", "JspMain"]
+defaultTargets = ["Jsp301", "Jsp307", "Jsp318", "Jsp193Full", "Jsp243", "Jsp125", "Ramsey125", "Rl1", "Rl2", "Rl3", "RL4", "JspMain", "Jsp511K24"]
 
 [leanOptions]
 pp.unicode.fun = true # pretty-prints `fun a ↦ b`
